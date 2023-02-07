@@ -7,7 +7,8 @@ use std::cmp;
 static NUMBERS: &'static [i32] = &[0, 10, 20, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 93, 96, 100];
 static DEF_OPACITY: usize = 13;
 
-static USAGE: &str = "rurxvt_opacity [-+=h]
+static USAGE: &str = 
+"rurxvt_opacity [-+=h]
 - -- decrease
 + -- increase
 = -- set 100% opaque
