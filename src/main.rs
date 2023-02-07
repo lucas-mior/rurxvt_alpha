@@ -37,8 +37,10 @@ fn main() {
     let path = Path::new(&file);
     let mut current: usize;
     if path.exists() {
-        let data = fs::read_to_string(&file).expect("Unable to read file");
-        current = data.parse().unwrap();
+        current = match fs::read_to_string(&file) {
+            Ok(data) => data.parse().unwrap(),
+            Err(_) => DEF_OPACITY,
+        };
     } else {
         current = DEF_OPACITY;
     }
