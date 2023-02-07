@@ -1,7 +1,6 @@
 use nix::unistd::getppid;
 use std::process::exit;
 use std::env;
-use std::path::Path;
 use std::fs;
 use std::cmp;
 
@@ -34,16 +33,11 @@ fn main() {
 
     let file = format!("{}/{}_{}", CACHE, NAME, window_id);
 
-    let path = Path::new(&file);
     let mut current: usize;
-    if path.exists() {
-        current = match fs::read_to_string(&file) {
-            Ok(data) => data.parse().unwrap(),
-            Err(_) => DEF_OPACITY,
-        };
-    } else {
-        current = DEF_OPACITY;
-    }
+    current = match fs::read_to_string(&file) {
+        Ok(data) => data.parse().unwrap(),
+        Err(_) => DEF_OPACITY,
+    };
 
     match argv[1].as_str() {
         "-" => current = cmp::max(current - 1, 0),
